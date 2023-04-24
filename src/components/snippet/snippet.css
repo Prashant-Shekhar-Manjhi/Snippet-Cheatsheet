@@ -1,0 +1,57 @@
+.snippet-container{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8rem;
+    margin-top: 4rem;
+    overflow-y: hidden;
+}
+
+.snippet-container-heading{
+    height: 3rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: #495057;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.snippet-file-name{
+    color: #f1f3f5;
+    display: inline-block;
+    font-size: 1.4rem; 
+}
+
+.snippet-copy-button-wrapper{
+    display: inline-block;
+}
+.snippet-copy-button-wrapper ion-icon{
+    color: white;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.snippet-copied-wrapper{
+    border: solid 0.1rem #ced4da;
+    padding: 0.8rem 0.4rem;
+    border-radius: 0.4rem;
+    height: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.snippet-copied-wrapper p{
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #ced4da;
+}
+.syntax-highlighter{
+    font-size: 1.6rem !important;
+    margin-top: 0 !important;
+    border-radius: 0 0 0.5rem 0.5rem !important;
+    max-height: 70vh;
+    cursor: pointer;
+}
