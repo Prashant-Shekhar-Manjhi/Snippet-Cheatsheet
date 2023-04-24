@@ -13,7 +13,6 @@ export default function Snippet({snippet}) {
             setCopy(false);
         }, 2000)
     }
-    console.log(snippets)
   return (
     <div className="snippet-container" >
         <div className="snippet-container-heading">
