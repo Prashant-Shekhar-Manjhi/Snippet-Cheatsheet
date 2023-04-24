@@ -33,12 +33,12 @@
 
 .snippet-copied-wrapper{
     border: solid 0.1rem #ced4da;
-    padding: 0.8rem 0.4rem;
+    padding: 0.4rem 0.4rem;
     border-radius: 0.4rem;
-    height: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
 }
 
 .snippet-copied-wrapper p{
@@ -53,5 +53,4 @@
     margin-top: 0 !important;
     border-radius: 0 0 0.5rem 0.5rem !important;
     max-height: 70vh;
-    cursor: pointer;
 }

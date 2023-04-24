@@ -14,8 +14,8 @@ export default function Sidebar(props) {
               className={index===snippets.indexOf(snippet) ?`sidebar-list-item selected-list-item`: `sidebar-list-item`}
               onClick={()=>{
                 setIndex(snippets.indexOf(snippet));
-                props.snippetHandler(snippet)}}
-          >{snippet.name}</li>})}
+                props.snippetHandler(snippet)}}>
+            {snippet.name}</li>})}
         </ul>
     </div>
   )

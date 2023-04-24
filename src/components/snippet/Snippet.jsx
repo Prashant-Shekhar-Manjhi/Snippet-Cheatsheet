@@ -26,7 +26,7 @@ export default function Snippet({snippet}) {
                 }   
             </div>  
         </div>
-        <div onClick={()=>copyHandler(!snippet ? snippets[0].snippet : snippet?.snippet)}>
+        <div>
             <SyntaxHighlighter id={snippet? snippets[0].id :snippet?.id} className = "syntax-highlighter" language={!snippet ? snippets[0].lang : snippet?.lang} style={okaidia}>
                 {!snippet ? snippets[0].snippet : snippet?.snippet}
             </SyntaxHighlighter>    
