@@ -5,7 +5,7 @@ const snippets =  [
         filename : "log4j.properties",
         lang : "properties",
         snippet : `log4j.rootLogger=INFO, consoleAppender, fileAppender
-
+        
 log4j.appender.consoleAppender=org.apache.log4j.ConsoleAppender
 log4j.appender.consoleAppender.layout=org.apache.log4j.PatternLayout
 log4j.appender.consoleAppender.layout.ConversionPattern=[%5p] %d %-15t %c [%L] %m%n

@@ -1,5 +1,5 @@
 .header-container{
-    height: 4.8rem;
+    height: 5.8rem;
     background-color: #212529;
     width: 100%;
     display: flex;
@@ -7,9 +7,25 @@
     position: fixed;
     top: 0;
     z-index: 999;
+    justify-content: space-between;
 }
 .header-logo{
     height: 3.6rem;
     margin-left: 2.2rem;
     width: auto
-  }
+}
+
+.header-menu-item-wrapper{
+    margin-right: 2.2rem;
+    font-size: 1.6rem;
+    color: #ced4da;
+    cursor: pointer;
+    display: flex;
+    gap:0.2rem;
+    align-items: center;
+}
+
+.header-menu-items ion-icon{
+    color: #fff;
+    font-size: 1.8rem;
+}

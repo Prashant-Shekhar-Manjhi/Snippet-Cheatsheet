@@ -1,0 +1,109 @@
+.snippet-form-main-container{
+    width: 120rem;
+    background-color: #fff;
+    height: 55rem;
+    margin-top: 12.4rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.72);
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.72);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.72);
+    position: relative;
+    /* display: flex;
+    align-items: center;
+    justify-content:  */
+}
+
+.snippet-form-main-container ion-icon{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+.snippet-form-container{
+    font-size: 2.4em;
+}
+
+.snippet-form{
+   display: grid;
+   grid-template-columns: 1fr 2fr;
+}
+.snippet-form-heading{
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    font-size: 2.8rem;
+    margin-top: 0rem;
+}
+.snippet-form-input-wrapper{
+    display: flex;
+    gap: 3.6rem;
+    flex-direction: column;
+}
+.snippet-form-input-container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.snippet-form-textarea{
+    width: 100%;
+    height: 45rem;
+    padding: 1rem;
+    outline: none;
+    font-size: 1.6rem;
+}
+
+.snippet-form-input{
+    width: 80%;
+    height: 3.6rem;
+    padding: 0.4rem;
+    outline: none;
+    font-size: 1.6rem;
+}
+
+.snippet-form-button-container{
+    display: flex;
+    gap : 2rem;
+}
+
+.snippet-form-button{
+    display: inline-block;
+    width: 10rem;
+    height: 3.6rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.form-password-validation-container{
+    width: 50rem;
+    /* background-color:red; */
+    padding: 1rem;
+    height: 20rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: auto;
+    margin-top: 0rem;
+}
+
+.snippet-form-input-password{
+    width: 60%;
+    height: 3.6rem;
+    padding: 0.4rem;
+    outline: none;
+    font-size: 1.6rem;
+}
+
+.reduse-size{
+    width: 60rem !important;
+    height: 25rem !important;
+}
+

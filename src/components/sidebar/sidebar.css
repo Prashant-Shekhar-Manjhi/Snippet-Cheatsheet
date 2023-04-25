@@ -1,11 +1,11 @@
 .sidebar-container{
-    margin-top: 2rem;
+    margin-top: 4.4rem;
     margin-left: 1rem;
 }
 
 .sidebar-heading{
-    font-size: 1.6rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: 400;
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -33,6 +33,9 @@
 .sidebar-list-item:hover{
     background-color: #dee2e6;
    
+}
+.selected-list-item{
+    background-color: #dee2e6;
 }
 
 
