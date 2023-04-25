@@ -9,7 +9,6 @@ export default function SnippetForm({formModalHandler}) {
   const [filename, setFilename] = useState("");
   const [codeSnippet, setcodeSnippet] = useState("");
   const [lang , setLang] = useState("");
-  // const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn"));
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -43,18 +42,21 @@ export default function SnippetForm({formModalHandler}) {
     let [formModal, setFormModal] = formModalHandler;
     if(formModal)
       setFormModal(!formModal);
-    // localStorage.removeItem("loggedIn");
   }
 
   // login to add snippets
   const loginHandler = ()=>{
-    if(password === process.env.REACT_APP_LOGIN_PASSWORD){
+    if(password){
+      if(password === process.env.REACT_APP_LOGIN_PASSWORD){
         setLoggedIn(true);
-        // localStorage.setItem("loggedIn", true);
+      }else{
+        toast.error("Opps! Wrong password.");
+        setPassword("");
+      }
     }else{
-      toast.error("Opps! Wrong password.");
-      setPassword("");
+      toast.error("Enter password!");
     }
+    
   }
 
   return (
@@ -76,7 +78,7 @@ export default function SnippetForm({formModalHandler}) {
         <ion-icon name="close-outline" className="form-modal-close-button" onClick={onClickHandler}></ion-icon>
         {loggedIn ? <div className="snippet-form-container">
             <h2 className="snippet-form-heading">
-              Code Snippet
+              Add Code Snippet
             </h2>
             <form onSubmit={onSubmitHandler}  className="snippet-form">
               <div className='snippet-form-input-wrapper'>

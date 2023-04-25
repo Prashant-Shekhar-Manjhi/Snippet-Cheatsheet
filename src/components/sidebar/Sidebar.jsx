@@ -29,7 +29,7 @@ export default function Sidebar(props) {
  console.log(auth);
   return snippetsData && (
     <div className='sidebar-container'>
-        {/* <h2 className="sidebar-heading">Snippets Cheatsheet</h2> */}
+        <h2 className="sidebar-heading">Snippets Cheatsheet</h2>
         <ul className="sidebar-list">
             {
               Object.values(snippetsData).map((snippet)=>{return <li 
