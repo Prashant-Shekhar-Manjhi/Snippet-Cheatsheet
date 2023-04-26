@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {ref, get, getDatabase,child} from "firebase/database"
+import {format} from "timeago.js";
 import "./sidebar.css"
 import { auth } from '../../firebase/firebaseDB';
 
@@ -7,7 +8,19 @@ import { auth } from '../../firebase/firebaseDB';
 
 export default function Sidebar(props) {
   const [index, setIndex] = useState(null);
-  const [snippetsData, setSnippetsData] = useState({});
+  const [snippetsData, setSnippetsData] = useState([]);
+
+
+  // sorting...
+  const sortingByDateAndTime = (data)=>{
+    let dataTemp = data;
+    if(dataTemp){
+      dataTemp.sort((data1, data2)=>{
+        return (new Date(data2.createdAt)) - (new Date(data1.createdAt));
+      });
+    }
+    return dataTemp;
+  }
 
   // firebase api call fetching data...
   useEffect(()=>{
@@ -15,7 +28,8 @@ export default function Sidebar(props) {
       const dbRef = ref(getDatabase());
       get(child(dbRef, `snippets`)).then((snapshot) => {
           if (snapshot.exists()) {
-            setSnippetsData(snapshot.val());
+            //sort the fetched data by date and time..
+            setSnippetsData(sortingByDateAndTime(Object.values(snapshot.val())));
           } else {
             console.log("No data available");
           }
@@ -26,10 +40,12 @@ export default function Sidebar(props) {
       console.log(error);
     }
   },[])
- console.log(auth);
+  if(auth){}
   return snippetsData && (
     <div className='sidebar-container'>
-        <h2 className="sidebar-heading">Snippets Cheatsheet</h2>
+        <div className="sidebar-heading-container">
+          <p className="sidebar-heading">Recently shared Snippets</p>
+        </div>
         <ul className="sidebar-list">
             {
               Object.values(snippetsData).map((snippet)=>{return <li 
@@ -38,7 +54,9 @@ export default function Sidebar(props) {
               onClick={()=>{
                 setIndex(Object.values(snippetsData).indexOf(snippet));
                 props.snippetHandler(snippet)}}>
-            {snippet.name}</li>})}
+            {snippet.name}
+            <p className='sidebar-list-item-time'>{format(snippet?.createdAt, 'en_US')}</p>
+            </li>})}
         </ul>
     </div>
   )

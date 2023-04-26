@@ -23,7 +23,7 @@ export default function Home() {
                 <Snippet snippet={snippet}/>
               </div>
             </div>
-        </div>      
+        </div>
         : <SnippetForm formModalHandler={[formModal, setFormModal]}/>}
     </>
   )
