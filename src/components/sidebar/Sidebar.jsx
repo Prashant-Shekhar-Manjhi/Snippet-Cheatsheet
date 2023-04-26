@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import {ref, get, getDatabase,child} from "firebase/database"
 import {format} from "timeago.js";
 import "./sidebar.css"
-import { auth } from '../../firebase/firebaseDB';
-
-
 
 export default function Sidebar(props) {
   const [index, setIndex] = useState(null);
@@ -24,23 +20,20 @@ export default function Sidebar(props) {
 
   // firebase api call fetching data...
   useEffect(()=>{
-    try {
-      const dbRef = ref(getDatabase());
-      get(child(dbRef, `snippets`)).then((snapshot) => {
-          if (snapshot.exists()) {
-            //sort the fetched data by date and time..
-            setSnippetsData(sortingByDateAndTime(Object.values(snapshot.val())));
-          } else {
-            console.log("No data available");
-          }
-        }).catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+      fetch("https://snippet-cheatsheet-default-rtdb.firebaseio.com/snippets.json", {
+        method:"GET",
+      })
+      .then((res)=>{
+        return res.json();
+      })
+      .then((res)=>{
+        const data = Object.values(res);
+        setSnippetsData(sortingByDateAndTime(Object.values(data[0])));
+      })
+      .catch(er=>{
+        console.log(er);
+      })
   },[])
-  if(auth){}
   return snippetsData && (
     <div className='sidebar-container'>
         <div className="sidebar-heading-container">

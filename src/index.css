@@ -33,11 +33,11 @@ body {
     width: 0.4rem !important;
   }
   
-  /* Track */
+  /* Track
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px #ced4da; 
     border-radius: 5px;
-  }
+  } */
    
   /* Handle */
   ::-webkit-scrollbar-thumb {

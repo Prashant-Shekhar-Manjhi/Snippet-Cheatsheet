@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {set, ref} from "firebase/database"
-import {database} from '../../firebase/firebaseDB';
+import {set, ref, push} from "firebase/database"
+import {database, auth} from '../../firebase/firebaseDB';
+import {signInWithEmailAndPassword , signOut, getAuth } from "firebase/auth";
 import "./snippetForm.css";
 export default function SnippetForm({formModalHandler}) {
   const [name, setName] = useState("");
@@ -17,47 +18,59 @@ export default function SnippetForm({formModalHandler}) {
     if(!name || !filename || !codeSnippet || !lang){
         toast.error("Please Enter Code details!");
     }else{
-      let id = (Math.floor(Math.random() * 9000000000) + 1000000000).toString(); 
-      try {
-        set(ref(database, 'snippets/'+ id),{
+        let id = (Math.floor(Math.random() * 9000000000) + 1000000000).toString(); 
+        let authUser = auth.currentUser;
+        const postListRef = ref(database, `snippets/${authUser.uid}`);
+        const newPostRef = push(postListRef);
+        set(newPostRef, {
           id : id,
           name : name,
           filename : filename,
           lang : lang,
           snippet : codeSnippet,
           createdAt : (new Date()).toString()
-        });
-        toast.success("Successfully Added");
+        }).then(()=>{
+            toast.success("Successfully Added");
+        }).catch((error)=>{
+            alert(error);
+        })
+
         setName("");
         setFilename("");
         setLang("");
-        setcodeSnippet("");
-      } catch (error) {
-          console.log(error);
-      }
+        setcodeSnippet(""); 
     }
   }
 
   //close modal button handler...
   const onClickHandler = ()=>{
     let [formModal, setFormModal] = formModalHandler;
-    if(formModal)
-      setFormModal(!formModal);
+    if(formModal){
+      signOut(auth).then(() => {
+        setFormModal(!formModal);
+        setLoggedIn(false);
+      }).catch((error) => {
+        toast.error("Opps! Something wrong.");
+        console.log(error);
+      });
+    }     
   }
 
   // login to add snippets
   const loginHandler = ()=>{
+    let auth = getAuth();
     if(password){
-      if(password === process.env.REACT_APP_LOGIN_PASSWORD){
+      signInWithEmailAndPassword(auth, 'shekharprashant789@gmail.com', password)
+      .then((userCredential) => {
+        toast.success("You are logged In."); 
         setLoggedIn(true);
-      }else{
-        toast.error("Opps! Wrong password.");
-        setPassword("");
-      }
-    }else{
-      toast.error("Enter password!");
+      })
+      .catch((error) => {
+          toast.error("Something went wrong!");
+          console.log(error.message);
+          setPassword("");
+      });
     }
-    
   }
 
   // form reset..
