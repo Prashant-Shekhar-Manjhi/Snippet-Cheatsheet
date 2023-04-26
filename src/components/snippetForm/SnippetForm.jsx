@@ -24,7 +24,8 @@ export default function SnippetForm({formModalHandler}) {
           name : name,
           filename : filename,
           lang : lang,
-          snippet : codeSnippet
+          snippet : codeSnippet,
+          createdAt : (new Date()).toString()
         });
         toast.success("Successfully Added");
         setName("");
@@ -57,6 +58,14 @@ export default function SnippetForm({formModalHandler}) {
       toast.error("Enter password!");
     }
     
+  }
+
+  // form reset..
+  const resetFormHandler = ()=>{
+    setName("");
+    setFilename("");
+    setLang("");
+    setcodeSnippet("");
   }
 
   return (
@@ -93,11 +102,11 @@ export default function SnippetForm({formModalHandler}) {
                   </div> 
                   <div className="snippet-form-button-container">
                     <button type='submit' className='snippet-form-button'>Submit</button>
-                    <button type='reset' className='snippet-form-button'>Reset</button>
+                    <button type='reset' onClick={resetFormHandler} className='snippet-form-button'>Reset</button>
                   </div> 
               </div>
               <div className="snippet-form-textarea-container">
-                  <textarea onChange={(e)=>{setcodeSnippet(e.target.value)}} className='snippet-form-textarea' value={codeSnippet}></textarea>
+                  <textarea onChange={(e)=>{setcodeSnippet(e.target.value)}} className='snippet-form-textarea' value={codeSnippet} placeholder='Paste Code Snippet Here...'></textarea>
               </div>
             </form>
         </div>

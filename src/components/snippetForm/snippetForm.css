@@ -57,6 +57,7 @@
     padding: 1rem;
     outline: none;
     font-size: 1.6rem;
+    resize: none;
 }
 
 .snippet-form-input{
