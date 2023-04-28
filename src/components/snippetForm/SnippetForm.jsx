@@ -31,14 +31,13 @@ export default function SnippetForm({formModalHandler}) {
           createdAt : (new Date()).toString()
         }).then(()=>{
             toast.success("Successfully Added");
+            setName("");
+            setFilename("");
+            setLang("");
+            setcodeSnippet("");
         }).catch((error)=>{
             alert(error);
         })
-
-        setName("");
-        setFilename("");
-        setLang("");
-        setcodeSnippet(""); 
     }
   }
 
@@ -53,7 +52,7 @@ export default function SnippetForm({formModalHandler}) {
         toast.error("Opps! Something wrong.");
         console.log(error);
       });
-    }     
+    }  
   }
 
   // login to add snippets

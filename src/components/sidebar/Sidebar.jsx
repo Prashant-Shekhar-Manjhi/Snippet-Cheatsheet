@@ -1,38 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import {format} from "timeago.js";
+import {getSnippets} from "./../../firebase/firebaseController";
 import "./sidebar.css"
 
 export default function Sidebar(props) {
   const [index, setIndex] = useState(null);
   const [snippetsData, setSnippetsData] = useState([]);
 
-
-  // sorting...
-  const sortingByDateAndTime = (data)=>{
-    let dataTemp = data;
-    if(dataTemp){
-      dataTemp.sort((data1, data2)=>{
-        return (new Date(data2.createdAt)) - (new Date(data1.createdAt));
-      });
-    }
-    return dataTemp;
-  }
-
   // firebase api call fetching data...
   useEffect(()=>{
-      fetch("https://snippet-cheatsheet-default-rtdb.firebaseio.com/snippets.json", {
-        method:"GET",
-      })
-      .then((res)=>{
-        return res.json();
-      })
-      .then((res)=>{
-        const data = Object.values(res);
-        setSnippetsData(sortingByDateAndTime(Object.values(data[0])));
-      })
-      .catch(er=>{
-        console.log(er);
-      })
+    getSnippets()
+    .then((data)=>{
+      setSnippetsData(data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
   },[])
   return snippetsData && (
     <div className='sidebar-container'>
